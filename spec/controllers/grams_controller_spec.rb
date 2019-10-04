@@ -4,11 +4,14 @@ RSpec.describe GramsController, type: :controller do
 
   describe "grams#edit action" do
     it "should successfully show the edit form if the gram is found" do
-
+      gram = FactoryBot.create(:gram)
+      get :edit, params: { id: gram.id }
+      expect(response).to have_http_status(:success)
     end
 
     it "should return a 404 error message if the gram is not found" do
-
+      get :edit, params: { id: 'SWAG' }
+      expect(response).to have_http_status(:not_found)
     end
   end
 
@@ -38,6 +41,7 @@ RSpec.describe GramsController, type: :controller do
       get :new
       expect(response).to redirect_to new_user_session_path
     end
+
     it "should successfully show the new form" do
       user = FactoryBot.create(:user)
       sign_in user  
@@ -53,6 +57,7 @@ RSpec.describe GramsController, type: :controller do
       post :create, params: { gram: { message: "Hello" } }
       expect(response).to redirect_to new_user_session_path
     end
+
     it "should successfully create a new gram in our database" do
       user = FactoryBot.create(:user)
       sign_in user

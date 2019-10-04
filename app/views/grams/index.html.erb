@@ -3,8 +3,8 @@
 <% @grams.each do |gram| %>
 <div>
   <%= gram.message %>
-    <% if gram.image %>
-      then gram.image.url %>
+    <% unless gram.image.nil? %>
+      <%= image_tag gram.image.url %>
     <% end %>
 </div>
 <% end %>

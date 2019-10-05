@@ -49,6 +49,8 @@ gem 'carrierwave', '~> 2.0'
 
 gem 'fog-aws'
 
+gem 'rake', '0.8.7'
+
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.3.3'
 end
